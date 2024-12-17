@@ -17,7 +17,7 @@ class Covid19Helper {
     }
   }
 
-  Future<CountryName?> reportsHelper() async {
+  Future<ReportModel?> reportsHelper() async {
     String apiLink =
         "https://covid-19-statistics.p.rapidapi.com/reports?city_name=Autauga&region_province=Alabama&iso=USA&region_name=US&q=US%20Alabama&date=2020-04-16";
     http.Response response = await http.get(Uri.parse(apiLink), headers: {
@@ -26,8 +26,8 @@ class Covid19Helper {
     });
     if (response.statusCode == 200) {
       var json = jsonDecode(response.body);
-      CountryName countryName = CountryName.maptomodel(json);
-      return countryName;
+      ReportModel reportModel = ReportModel.maptomodel(json);
+      return reportModel;
     }
   }
 }
